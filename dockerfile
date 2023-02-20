@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 ENV PYTHONPATH=/usr/lib/python3.9/site-packages
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-utils \
+    && apt-get install -y --no-install-recommends apt-utils libgl1 libglib2.0-0 \
     python3-pip \
     && apt-get install psmisc \
     && apt-get clean \

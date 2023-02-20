@@ -2,8 +2,8 @@ version: "3"
 services:
   object-detector:
     build:
-      context: ..
-      dockerfile: ./docker/dockerfile
+      context: .
+      dockerfile: dockerfile
     container_name: yolov5-detector
     ports:
       - "8000:8000"
