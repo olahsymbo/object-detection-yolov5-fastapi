@@ -7,7 +7,7 @@ readme = "README.md"
 #packages = [{include = "object_detection_yolov5"}]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.12"
 fastapi = "^0.92.0"
 uvicorn = "^0.20.0"
 opencv-python = "^4.7.0.68"
@@ -22,6 +22,9 @@ pyyaml = "^6.0"
 tqdm = "^4.64.1"
 matplotlib = "^3.7.0"
 seaborn = "^0.12.2"
+websockets = "10.0"
+gitpython = "^3.1.31"
+scipy = "1.10"
 
 
 [build-system]
