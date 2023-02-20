@@ -4,6 +4,7 @@ from io import BytesIO
 from warnings import filterwarnings, simplefilter
 import ssl
 import torch
+import uvicorn
 from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import JSONResponse
 from PIL import Image
@@ -62,3 +63,7 @@ async def image_detect(request: Request,
                                  "errors": "error",
                                  "status": 400},
                                 status_code=400)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
