@@ -1,10 +1,8 @@
 import os
 import logging
 from io import BytesIO
-from typing import List
 from warnings import filterwarnings, simplefilter
 import ssl
-import traceback
 import torch
 from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import JSONResponse
@@ -39,7 +37,7 @@ app = FastAPI()
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 
 
-@app.post("/detect")
+@app.post("/object_detect")
 async def image_detect(request: Request,
                        input_file: UploadFile = File(...)):
 
@@ -48,11 +46,10 @@ async def image_detect(request: Request,
         try:
 
             image = Image.open(BytesIO(await input_file.read()))
-
             ob = ObjectDetector(image, model)
             json_results = ob.object_detect()
 
-            logger.info("detection results", json_result)
+            logger.info(["detection results", json_result])
 
             return JSONResponse({"data": json_results,
                                  "message": "object detected successfully",
