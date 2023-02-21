@@ -1,3 +1,4 @@
+[![ObjectDetectionService](https://github.com/olahsymbo/object-detection-yolov5-fastapi/actions/workflows/object-detection-pipeline.yml/badge.svg)](https://github.com/olahsymbo/object-detection-yolov5-fastapi/actions/workflows/object-detection-pipeline.yml)
 # Object Detection
 
 A FastAPI object detection application based on Yolov5 model.
