@@ -25,6 +25,8 @@ seaborn = "^0.12.2"
 websockets = "10.0"
 gitpython = "^3.1.31"
 scipy = "1.10"
+pytest = "^7.2.1"
+httpx = "^0.23.3"
 
 
 [build-system]
