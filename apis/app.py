@@ -22,13 +22,13 @@ else:
 filterwarnings("ignore")
 simplefilter(action='ignore', category=FutureWarning)
 
-if not os.path.exists('logs'):
-    os.mkdir('logs')
+if not os.path.exists('../logs'):
+    os.mkdir('../logs')
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logging.StreamHandler()
-file_handler = logging.FileHandler('logs/api.log')
+file_handler = logging.FileHandler('../logs/api.log')
 file_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(message)s')
 file_handler.setFormatter(formatter)
