@@ -1,6 +1,7 @@
 import os
 import logging
 from io import BytesIO
+from typing import List
 from warnings import filterwarnings, simplefilter
 import ssl
 import torch
@@ -9,10 +10,7 @@ from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import JSONResponse
 from PIL import Image
 
-from core.base_detector import ObjectDetector
-
-filterwarnings("ignore")
-simplefilter(action='ignore', category=FutureWarning)
+from object_detection_yolov5.core.base_detector import ObjectDetector
 
 try:
     _create_unverified_https_context = ssl._create_unverified_context
@@ -20,6 +18,9 @@ except AttributeError:
     pass
 else:
     ssl._create_default_https_context = _create_unverified_https_context
+
+filterwarnings("ignore")
+simplefilter(action='ignore', category=FutureWarning)
 
 if not os.path.exists('logs'):
     os.mkdir('logs')
@@ -33,9 +34,9 @@ formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(messag
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
-app = FastAPI()
+app: FastAPI = FastAPI()
 
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+model = torch.hub.load('ultralytics/yolov5', 'yolov5l')
 
 
 @app.post("/object_detect")
@@ -43,11 +44,11 @@ async def image_detect(request: Request,
                        input_file: UploadFile = File(...)):
 
     if request.method == "POST":
-        json_result = []
+        json_result: List = []
         try:
 
-            image = Image.open(BytesIO(await input_file.read()))
-            ob = ObjectDetector(image, model)
+            image: Image = Image.open(BytesIO(await input_file.read()))
+            ob: ObjectDetector = ObjectDetector(image, model)
             json_results = ob.object_detect()
 
             logger.info(["detection results", json_result])

@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Object Detection using Yolov5"
 authors = ["olahsymbo <olahsymbo@gmail.com>"]
 readme = "README.md"
-#packages = [{include = "object_detection_yolov5"}]
+packages = [{include = "object_detection_yolov5", from = "src"}]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
@@ -27,6 +27,9 @@ gitpython = "^3.1.31"
 scipy = "1.10"
 pytest = "^7.2.1"
 httpx = "^0.23.3"
+flake8 = "^6.1.0"
+pre-commit = "^3.3.3"
+isort = "^5.12.0"
 
 
 [build-system]
