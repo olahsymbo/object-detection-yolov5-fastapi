@@ -5,7 +5,6 @@ from object_detection_yolov5.helpers.results_to_json import results_to_json
 
 
 class ObjectDetector:
-
     def __init__(self, image: PIL, model) -> None:
         self.resized_image = None
         self.image = image

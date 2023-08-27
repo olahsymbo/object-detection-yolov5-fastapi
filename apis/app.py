@@ -20,28 +20,27 @@ else:
     ssl._create_default_https_context = _create_unverified_https_context
 
 filterwarnings("ignore")
-simplefilter(action='ignore', category=FutureWarning)
+simplefilter(action="ignore", category=FutureWarning)
 
-if not os.path.exists('../logs'):
-    os.mkdir('../logs')
+if not os.path.exists("../logs"):
+    os.mkdir("../logs")
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logging.StreamHandler()
-file_handler = logging.FileHandler('../logs/api.log')
+file_handler = logging.FileHandler("../logs/api.log")
 file_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(message)s')
+formatter = logging.Formatter("%(asctime)s : %(levelname)s : %(name)s : %(message)s")
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 app: FastAPI = FastAPI()
 
-model = torch.hub.load('ultralytics/yolov5', 'yolov5l')
+model = torch.hub.load("ultralytics/yolov5", "yolov5l")
 
 
 @app.post("/object_detect")
-async def image_detect(request: Request,
-                       input_file: UploadFile = File(...)):
+async def image_detect(request: Request, input_file: UploadFile = File(...)):
 
     if request.method == "POST":
         json_result: List = []
@@ -53,17 +52,25 @@ async def image_detect(request: Request,
 
             logger.info(["detection results", json_result])
 
-            return JSONResponse({"data": json_results,
-                                 "message": "object detected successfully",
-                                 "errors": None,
-                                 "status": 200},
-                                status_code=200)
+            return JSONResponse(
+                {
+                    "data": json_results,
+                    "message": "object detected successfully",
+                    "errors": None,
+                    "status": 200,
+                },
+                status_code=200,
+            )
         except Exception as error:
             logger.error(["process failed", error])
-            return JSONResponse({"message": "object detection failed",
-                                 "errors": "error",
-                                 "status": 400},
-                                status_code=400)
+            return JSONResponse(
+                {
+                    "message": "object detection failed",
+                    "errors": "error",
+                    "status": 400,
+                },
+                status_code=400,
+            )
 
 
 if __name__ == "__main__":

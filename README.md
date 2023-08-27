@@ -22,13 +22,13 @@ The app will be served on port `8000`
 
 An example `curl` request:
 
-``` 
+```
 curl --location '127.0.0.1:8000/object_detect' \
 --form 'input_file=@"/Users/Downloads/download.jpeg"'
 ```
 
 Valid response:
-``` 
+```
 {
     "data": [
         [
@@ -130,7 +130,7 @@ Valid response:
 
 Error response:
 
-``` 
+```
 {
     "message": "object detection failed",
     "errors": "error",
