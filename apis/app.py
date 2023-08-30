@@ -50,7 +50,7 @@ async def image_detect(request: Request, input_file: UploadFile = File(...)):
             ob: ObjectDetector = ObjectDetector(image, model)
             json_results = ob.object_detect()
 
-            logger.info(["detection results", json_result])
+            logger.info(["object detection results", json_result])
 
             return JSONResponse(
                 {
