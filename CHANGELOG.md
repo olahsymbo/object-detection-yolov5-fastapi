@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2023-11-02)
+
+### Feature
+
+* Add git workflow ([`afd7134`](https://github.com/olahsymbo/object-detection-yolov5-fastapi/commit/afd7134dcbb6cf3a8d8888ec7803c7ecd886ba96))
+
 ## v0.1.0 (2023-11-02)
 
 ### Feature
