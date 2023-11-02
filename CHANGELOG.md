@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2023-11-02)
+
+### Feature
+
+* Add semver ([`943a9a4`](https://github.com/olahsymbo/object-detection-yolov5-fastapi/commit/943a9a4ad8c18d3ea8fc0742bd49f3698c9b51db))
+* Add git workflow ([`2528d29`](https://github.com/olahsymbo/object-detection-yolov5-fastapi/commit/2528d2902812b4501493bacbb07baf66136d17c9))
+
 ## v0.2.0 (2023-11-02)
 
 ### Feature

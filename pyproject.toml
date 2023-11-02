@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "object-detection-yolov5"
-version = "0.2.0"
+version = "0.3.0"
 description = "Object Detection using Yolov5"
 authors = ["olahsymbo <olahsymbo@gmail.com>"]
 readme = "README.md"
