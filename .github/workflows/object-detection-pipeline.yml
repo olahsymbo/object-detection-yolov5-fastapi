@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
   pull-requests: write
 
 jobs:
@@ -82,4 +83,4 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
