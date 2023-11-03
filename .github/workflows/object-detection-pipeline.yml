@@ -75,9 +75,22 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           poetry run semantic-release publish
-      - name: Publish to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Set up Git for release
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository-url: https://test.pypi.org/legacy/
+          tag_name: ${{ steps.create_tag.outputs.tag_name }}
+          release_name: Release ${{ steps.create_tag.outputs.tag_name }}
+          draft: false
+          prerelease: false
+      - name: Upload package to GitHub Packages
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          docker build -t ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:${{ steps.create_tag.outputs.tag_name }} .
+          docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:${{ steps.create_tag.outputs.tag_name }}
